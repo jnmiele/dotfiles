@@ -13,15 +13,6 @@ alias editbrc='subl $HOME/.bashrc'
 alias sourcebp='. $HOME/.bash_profile'
 alias sourcebrc='. $HOME/.bashrc'
 
-# Change directory (personal)
-alias cdokrs-dashboard-backend='cd $OKRS_PATH/applications/dashboard-backend'
-alias cdokrs-dashboard-frontend='cd $OKRS_PATH/applications/dashboard-frontend'
-alias cdokrs-localenv='cd $OKRS_PATH'
-alias cdokrs-okr-service='cd $OKRS_PATH/applications/okr-service'
-alias cdokrs-user-service='cd $OKRS_PATH/applications/user-service'
-alias cdokrs-website='cd $OKRS_PATH/applications/website'
-alias cdtax-service-poc='cd $DEVELOPMENT_PATH/jroman00/tax-service-poc'
-
 # Change directory (LeafLink)
 alias cdleaflink-info='cd $LLPPATH/applications/leaflink-info'
 alias cdleaflink-ui='cd $LLPPATH/applications/leaflink-ui'
@@ -29,35 +20,6 @@ alias cdleaflink='cd $LLPPATH/applications/leaflink'
 alias cdllf-api='cd $LLPPATH/applications/llf-api'
 alias cdllf-web='cd $LLPPATH/applications/llf-web'
 alias cdllp-local='cd $LLPPATH'
-
-# Change directory (SoulCycle)
-alias cdsc-api-tests='cd $PODIUMPATH/applications/api-tests'
-alias cdsc-backrow='cd $PODIUMPATH/applications/backrow'
-alias cdsc-bayside='cd $PODIUMPATH/applications/bayside'
-alias cdsc-bikeshed='cd $PODIUMPATH/applications/bikeshed'
-alias cdsc-bouncer='cd $PODIUMPATH/applications/bouncer'
-alias cdsc-candlelight='cd $PODIUMPATH/applications/candlelight'
-alias cdsc-dashboard-backend='cd $PODIUMPATH/applications/dashboard-backend'
-alias cdsc-dashboard-frontend='cd $PODIUMPATH/applications/dashboard-frontend'
-alias cdsc-digital-signatures-backend='cd $PODIUMPATH/applications/digital-signatures-backend'
-alias cdsc-digital-signatures-frontend='cd $PODIUMPATH/applications/digital-signatures-frontend'
-alias cdsc-gbp-backend='cd $PODIUMPATH/applications/gbp-backend'
-alias cdsc-gbp-frontend='cd $PODIUMPATH/applications/gbp-frontend'
-alias cdsc-gbp-website-backend='cd $PODIUMPATH/applications/gbp-website-backend'
-alias cdsc-gbp-website-frontend='cd $PODIUMPATH/applications/gbp-website-frontend'
-alias cdsc-gomigrate-notifs='cd $PODIUMPATH/applications/gomigrate-notifications'
-alias cdsc-hourglass='cd $PODIUMPATH/applications/hourglass'
-alias cdsc-loadtests='cd $PODIUMPATH/applications/podium-loadtests'
-alias cdsc-mail-carrier='cd $PODIUMPATH/applications/mail-carrier'
-alias cdsc-pops-bot='cd $PODIUMPATH/applications/pops-bot'
-alias cdsc-post-office='cd $PODIUMPATH/applications/post-office'
-alias cdsc-scs='cd $PODIUMPATH/applications/soul-cycle-site'
-alias cdsc-series-generator-backend='cd $PODIUMPATH/applications/series-generator-backend'
-alias cdsc-series-generator-frontend='cd $PODIUMPATH/applications/series-generator-frontend'
-alias cdsc-silk-road='cd $PODIUMPATH/applications/silk-road'
-alias cdsc-soulcyclesite='cd $PODIUMPATH/applications/soul-cycle-site'
-alias cdsc-users-service='cd $PODIUMPATH/applications/users-service'
-alias cdsc-w77='cd $PODIUMPATH/applications/w77'
 
 # Docker aliases
 alias dbomb='docker ps -q | xargs docker stop; docker ps -aq | xargs docker rm; docker volume prune -f; docker network prune -f'
@@ -98,13 +60,14 @@ alias g='git'
 alias ga='git add'
 alias gamend='git commit --amend'
 alias gblame='git blame -wM'
-alias gc='git commit -m'
+alias gc='git checkout'
 alias gdiff='git diff --ignore-all-space --no-prefix'
 alias gfp='git fetch --prune && git pull origin $(git_branch_name)'
 alias gpull='git pull origin $(git_branch_name)'
 alias gpush='git push origin $(git_branch_name)'
 alias gs='git status'
 alias gx='git ls-files --directory --exclude-standard --others | xargs rm -rf'
+alias gpoh='git push origin head'
 
 # Misc aliases
 alias av='ansible-vault'
@@ -147,6 +110,3 @@ command -v sha1sum > /dev/null || alias sha1sum="shasum"
 
 # Print each PATH entry on a separate line
 alias path='echo -e ${PATH//:/\\n}'
-
-# Because I can't type python for some reason!
-alias pythong='python'
