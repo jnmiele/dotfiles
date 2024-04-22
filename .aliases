@@ -2,9 +2,10 @@
 
 # Application aliases
 if [[ "$(uname -s)" == "Darwin" ]]; then
-  alias code='/Applications/Visual\ Studio\ Code.app/Contents/Resources/app/bin/code'
+  alias vsc='/Applications/Visual\ Studio\ Code.app/Contents/Resources/app/bin/code'
   alias google-chrome='/Applications/Google\ Chrome.app/Contents/MacOS/Google\ Chrome'
   alias subl='/Applications/Sublime\ Text.app/Contents/SharedSupport/bin/subl'
+  alias code='pycharm'
 fi
 
 # Bash aliases
@@ -33,7 +34,7 @@ alias dlogcelery='docker-compose ps -q marketplace.app.celery | xargs docker log
 alias dlogcelery_beat='docker-compose ps -q marketplace.app.celery_beat | xargs docker logs -f'
 alias dlogdb='docker-compose ps -q marketplace.app.db | xargs docker logs -f'
 alias dlogredis='docker-compose ps -q marketplace.app.redis | xargs docker logs -f'
-alias dlogweb='docker-compose ps -q marketplace.app.web | xargs docker logs -f'
+alias dlogweb='docker-compose ps -q marketplace.app.backend | xargs docker logs -f'
 alias dlogweb_fe='docker-compose ps -q marketplace.app.web_fe | xargs docker logs -f'
 
 # Minikube aliases
@@ -67,7 +68,7 @@ alias gpull='git pull origin $(git_branch_name)'
 alias gpush='git push origin $(git_branch_name)'
 alias gs='git status'
 alias gx='git ls-files --directory --exclude-standard --others | xargs rm -rf'
-alias gpoh='git push origin head'
+alias gpoh='git push origin head --force-with-lease'
 
 # Misc aliases
 alias av='ansible-vault'
@@ -112,4 +113,16 @@ command -v sha1sum > /dev/null || alias sha1sum="shasum"
 alias path='echo -e ${PATH//:/\\n}'
 
 # Attach to web container
-alias debugweb='docker attach $(docker-compose ps -q marketplace.app.web)'
+alias debugweb='docker attach $(docker-compose ps -q marketplace.app.backend)'
+
+# Attach to unified container
+alias debugunified='docker attach $(docker-compose ps -q marketplace.app.api-unified)'
+
+# Re-auth with ECR
+alias ecrlogin='aws sts get-caller-identity;bash $LLPPATH/bin/run-aws-command.sh authenticate-ecr'
+
+# Open workflow docs
+alias wfdocs='subl ~/Development/workflow-docs/'
+
+
+alias awslogin='bash ${LLPPATH}/bin/daily-login.sh'

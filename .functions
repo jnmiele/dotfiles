@@ -1,5 +1,31 @@
 #!/usr/bin/env bash
 
+# Connect to a PR env db
+function qadb() {
+  if [[ -z $PR_ENV_USER ]]; then
+    echo 'You must store the pr-env user as a global var (PR_ENV_USER).'
+    return 1
+  fi
+
+  if [[ -z $PR_ENV_PASS ]]; then
+    echo 'You must store the pr-env pass as a global var (PR_ENV_PASS).'
+    return 1
+  fi
+
+  if [[ -z "$1" ]]; then
+    echo 'You must provide a PR environment number.'
+    return 1
+  fi
+
+  echo ""
+  echo "Connecting to the Marketplace DB for PR-$1."
+  echo "Link to Pull Request: https://github.com/LeafLink/leaflink/pull/$1"
+  echo ""
+  psql postgres://$PR_ENV_USER:$PR_ENV_PASS@llp-pr-envs-postgres-us-west-2.czjhcuz3hzky.us-west-2.rds.amazonaws.com:5432/leaflink_pr_$1_commerce
+
+  return 0
+}
+
 # Connect to a Docker Compose service
 function dcconnect() {
   IFS=$'\n' read -d '' -r -a services < <(docker-compose config --services | sort)
